@@ -14,5 +14,5 @@ button.addEventListener('click', () => {
 });
 
 lista.addEventListener('click',(event) => {
-    event.target.classList.add('athuzott');
+    event.target.classList.toggle('athuzott');
 }) 
