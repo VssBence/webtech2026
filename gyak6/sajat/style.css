@@ -1,0 +1,56 @@
+.athuzott{
+    text-decoration: line-through;
+}
+
+.headline{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 34px;
+}
+
+/*Orai jegyzetből lopva*/
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+.btn:hover {
+    opacity: 0.8;
+}
+
+#bemenet-mezo {
+    padding: 8px;
+    margin: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#bemenet-mezo:focus {
+    border-color: #007bff;
+    outline: none;
+}
+#lista{
+    list-style-type: none;
+    padding: 0;
+}
+
+#lista li {
+    padding: 8px 12px;
+    margin: 4px 0;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+}
