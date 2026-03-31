@@ -1,4 +1,4 @@
-// GH_ACCESS_TOKEN betöltve a config.js-ből
+// GH_ACCESS_TOKEN betöltve másik fájlból
 
 function loadNavigation(){
     fetch('./navbar.html')
