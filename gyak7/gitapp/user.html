@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git App - Felhasználó adatlap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2 id="user-name"></h2>
+            <img id="avatar" alt="Profilkep" width="150">
+            <p id="blog"></p>
+            <p id="location"></p>
+            <p id="bio"></p>
+            <p id="repos"></p>
+            <p id="followers"></p>
+        </div>
+    </div>
+
+    <script src="../config.js"></script>
+    <script src="app.js"></script>
+    <script>
+        async function loadUser(login){
+            try {
+                const res = await fetch('https://api.github.com/users/' + login, {
+                    headers: {
+                        'Authorization': 'Bearer ' + GH_ACCESS_TOKEN
+                    }
+                });
+                if(!res.ok){
+                    throw Error("Http státusz:" + res.status);
+                }
+
+                const data = await res.json();
+                console.log(data);
+
+                const userNameElem = document.querySelector('#user-name');
+                if (data.name) {
+                    userNameElem.textContent = data.name;
+                }else{
+                    userNameElem.textContent = data.login; // Tudom hogy itt nem kéne semminek megjelennie, de olyan furán néz ki név nélkül
+                }
+
+                const avatarElem = document.querySelector('#avatar');
+                if (data.avatar_url) {
+                    avatarElem.src = data.avatar_url;
+                }
+
+                const blogElem = document.querySelector('#blog');
+                if (data.blog) {
+                    blogElem.textContent = "Blog: " + data.blog;
+                }
+
+                const LocationElem = document.querySelector('#location');
+                if (data.location) {
+                    LocationElem.textContent = "Hely: " + data.location;
+                }
+
+                const bioElem = document.querySelector('#bio');
+                if (data.bio) {
+                    bioElem.textContent = "Bio: " + data.bio;
+                }
+
+                const reposElem = document.querySelector('#repos');
+                if (data.public_repos != null) {
+                    reposElem.textContent = "Public repok száma: " + data.public_repos;
+                }
+
+                const followersElem = document.querySelector('#followers');
+                if (data.followers != null) {
+                    followersElem.textContent = "Követők száma: " + data.followers;
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert("Hiba a repobetöltés során:" + err);
+            }
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const login = params.get('id');
+        
+        loadUser(login);
+
+    </script>
+</body>
+</html>
